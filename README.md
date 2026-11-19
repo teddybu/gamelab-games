@@ -1,9 +1,9 @@
-# GameLab Arcade
+# GameLab Spielewelt
 
-A static landing page for GameLab browser games. Open `index.html` in a browser to preview it; no build or dependencies are needed.
+Eine statische Startseite für Browserspiele aus dem GameLab. Öffne `index.html` im Browser, um die Seite anzusehen; ein Build oder zusätzliche Abhängigkeiten sind nicht nötig.
 
-## Adding a game
+## Ein Spiel hinzufügen
 
-In `index.html`, copy a `game-card` inside `.game-grid` and update its link, game title, creator, and number. The card color classes in `style.css` can be reused or extended.
+Kopiere in `index.html` eine `game-card` innerhalb von `.game-grid` und passe den Link, den Spieltitel, den Namen der erstellenden Person und die Nummer an. Die Farbklassen der Karten in `style.css` können wiederverwendet oder erweitert werden.
 
-The page can be hosted as a static site, for example with GitHub Pages if it is available for this repository's visibility and account plan.
+Die Seite kann als statische Website veröffentlicht werden, zum Beispiel mit GitHub Pages, sofern es für die Sichtbarkeit dieses Repositorys und den Kontotarif verfügbar ist.
