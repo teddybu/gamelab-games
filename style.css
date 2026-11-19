@@ -1,0 +1,72 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #11142b;
+  color: #f7f5ea;
+  scroll-behavior: smooth;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid #d5f86d; outline-offset: 5px; }
+.page { max-width: 1440px; margin: auto; padding: 0 7%; }
+.site-header { height: 96px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ffffff24; }
+.brand { display: flex; gap: 10px; align-items: center; font-weight: 900; line-height: .8; font-size: 19px; text-decoration: none; letter-spacing: -.08em; }
+.brand > span > span, footer > span > span { color: #c7f366; }
+.brand small { display: block; font-size: 9px; letter-spacing: .3em; margin-top: 6px; }
+.brand-mark { display: grid; place-items: center; width: 40px; height: 40px; background: #c7f366; color: #11142b; border-radius: 12px; font-size: 28px; }
+.header-link { font-size: 13px; font-weight: 700; text-decoration: none; }
+.header-link span { margin-left: 8px; color: #c7f366; }
+.hero { min-height: 510px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding: 72px 0 80px; }
+.eyebrow { color: #c7f366; font-size: 10px; font-weight: 800; letter-spacing: .18em; }
+.eyebrow span { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; background: #c7f366; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin: 24px 0; font-size: clamp(46px, 5.5vw, 78px); line-height: 1.02; letter-spacing: -.065em; }
+h1 em { font-style: normal; color: #c7f366; }
+.intro { max-width: 410px; color: #b7bacb; line-height: 1.7; font-size: 16px; }
+.hero-button { display: inline-flex; gap: 36px; align-items: center; margin-top: 20px; padding: 16px 19px; border-radius: 7px; color: #11142b; background: #c7f366; font-size: 13px; font-weight: 800; text-decoration: none; }
+.hero-button:hover { background: #e0ff9a; }
+.hero-art { position: relative; display: grid; place-items: center; min-height: 350px; overflow: hidden; border-radius: 24px; background: #bd9efa; color: #11142b; }
+.orbit { position: absolute; width: 310px; height: 310px; border: 1px solid #11142b40; border-radius: 50%; }
+.orbit-two { width: 390px; height: 390px; }
+.controller { position: relative; width: 225px; height: 125px; border: 5px solid #11142b; border-radius: 55px 55px 45px 45px; background: #f7f5ea; transform: rotate(-12deg); box-shadow: 9px 11px 0 #11142b; }
+.dpad, .dpad::after { position: absolute; top: 50px; left: 36px; width: 52px; height: 16px; border-radius: 3px; background: #11142b; }
+.dpad::after { content: ""; top: 0; left: 0; transform: rotate(90deg); }
+.controller-dot { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #11142b; }
+.dot-one { right: 48px; top: 34px; }.dot-two { right: 29px; top: 53px; }.dot-three { right: 67px; top: 53px; }.dot-four { right: 48px; top: 72px; }
+.spark { position: absolute; font-size: 35px; }.spark-one { top: 42px; left: 15%; }.spark-two { bottom: 45px; right: 14%; }
+.art-caption { position: absolute; bottom: 22px; left: 24px; font-size: 9px; font-weight: 800; letter-spacing: .17em; }
+.games-section { padding: 42px 0 100px; border-top: 1px solid #ffffff24; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+h2 { margin: 12px 0 0; font-size: clamp(30px, 3.5vw, 44px); letter-spacing: -.055em; }
+.section-heading > p { margin: 0 0 4px; color: #a9adbf; font-size: 13px; }
+.game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.game-card { overflow: hidden; border: 1px solid #ffffff20; border-radius: 13px; background: #1b1e36; text-decoration: none; transition: transform .2s, border-color .2s; }
+.game-card:hover { transform: translateY(-5px); border-color: #c7f366; }
+.card-art { position: relative; height: 210px; overflow: hidden; color: #11142b; display: grid; place-items: center; }
+.card-green .card-art { background: #b9db9d; }.card-purple .card-art { background: #c2aaf2; }.card-orange .card-art { background: #ffbf8f; }
+.card-art::before, .card-art::after { content: ""; position: absolute; width: 175px; height: 175px; border: 1px solid #11142b35; border-radius: 50%; }
+.card-art::after { width: 235px; height: 235px; }
+.card-number { position: absolute; top: 18px; left: 18px; font-size: 9px; font-weight: 800; letter-spacing: .15em; }
+.art-symbol { position: relative; z-index: 1; font-size: 92px; line-height: 1; }
+.art-detail { position: absolute; right: 24px; bottom: 16px; font-size: 24px; }
+.card-info { display: flex; justify-content: space-between; align-items: center; padding: 22px; gap: 10px; }
+.card-info p { margin: 0 0 8px; color: #aaaec2; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+h3 { margin: 0; font-size: 19px; letter-spacing: -.03em; }
+.arrow { display: grid; place-items: center; flex: none; width: 35px; height: 35px; border: 1px solid #ffffff42; border-radius: 50%; }
+.collection-note { margin: 30px 0 0; color: #a9adbf; font-size: 13px; }.collection-note span { color: #c7f366; margin-right: 5px; }
+footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 0 32px; border-top: 1px solid #ffffff24; font-size: 11px; color: #aaaec2; }
+footer > span:first-child { color: #f7f5ea; font-weight: 900; letter-spacing: .03em; }
+@media (max-width: 760px) {
+  .page { padding: 0 6%; }
+  .site-header { height: 76px; }
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
+  .hero-art { min-height: 270px; }
+  .section-heading { display: block; }.section-heading > p { margin-top: 14px; }
+  .game-grid { grid-template-columns: 1fr; }
+  .card-art { height: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { scroll-behavior: auto; }
+  .game-card { transition: none; }
+}
