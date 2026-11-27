@@ -50,7 +50,8 @@
           </div>
           <p>Zum Spielen, Teilen und Genießen.</p>
         </div>
-        <div class="game-grid">
+        <!-- Fallback-Karten; werden per Script durch dynamisch erzeugte Karten ersetzt. -->
+        <div class="game-grid" id="game-grid">
           <a class="game-card card-green" href="https://muki5656.github.io/meinertesspiel/">
             <div class="card-art"><span class="card-number">01 / SPIEL</span><span class="art-symbol" aria-hidden="true">▰</span><span class="art-detail" aria-hidden="true">✳</span></div>
             <div class="card-info"><div><p>VON MUKI5656</p><h3>Minecraft Figur</h3></div><span class="arrow" aria-hidden="true">↗</span></div>
@@ -74,5 +75,65 @@
     </main>
     <footer><span>GAME<span>LAB</span> SPIELEWELT</span><span>Für neugierige Spielerinnen und Spieler. ✳</span></footer>
   </div>
+  <script>
+    // Hier nur noch die öffentlichen GitHub-Repos eintragen.
+    const REPOS = [
+      "https://github.com/muki5656/meinertesspiel",
+      "https://github.com/dusk3313/femboiiiiiiiiii",
+      "https://github.com/leon7719844/doodlejump",
+      "https://github.com/leo-wq338/Keine-Ahnung-Website",
+      "https://github.com/danylo780/geisthaus"
+    ];
+    const STYLES = [
+      ["card-green", "▰", "✳"], ["card-purple", "◈", "✦"], ["card-orange", "☾", "✦"]
+    ];
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+    async function loadGame(url) {
+      const m = url.match(/github\.com\/([^\/]+)\/([^\/#?]+)/i);
+      if (!m) return null;
+      const owner = m[1], repo = m[2].replace(/\.git$/, "");
+      const pagesUrl = `https://${owner.toLowerCase()}.github.io/${repo}/`;
+      let author = owner, title = repo, image = "";
+      try { // Offizielle Schreibweise des Besitzers und Repo-Namen
+        const r = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+        if (r.ok) { const d = await r.json(); author = d.owner.login; title = d.name; }
+      } catch (e) {}
+      try { // Spielname und Share-Bild (og:image) der veröffentlichten Seite
+        const r = await fetch(pagesUrl);
+        if (r.ok) {
+          const doc = new DOMParser().parseFromString(await r.text(), "text/html");
+          const t = doc.title.trim();
+          if (t) title = t;
+          const og = doc.querySelector('meta[property="og:image"], meta[name="twitter:image"]');
+          if (og && og.content) { try { image = new URL(og.content, pagesUrl).href; } catch (e) {} }
+        }
+      } catch (e) {}
+      // Fallback: automatisch erzeugter Screenshot der Seite
+      const screenshot = `https://s.wordpress.com/mshots/v1/${encodeURIComponent(pagesUrl)}?w=800&h=420`;
+      return { author, title, pagesUrl, image, screenshot };
+    }
+
+    (async () => {
+      const games = (await Promise.all(REPOS.map(loadGame))).filter(Boolean);
+      if (!games.length) return;
+      document.getElementById("game-grid").innerHTML = games.map((g, i) => {
+        const [cls, sym, det] = STYLES[i % STYLES.length];
+        const n = String(i + 1).padStart(2, "0");
+        return `<a class="game-card ${cls}" href="${esc(g.pagesUrl)}">
+          <div class="card-art"><span class="card-number">${n} / SPIEL</span><span class="art-symbol" aria-hidden="true">${sym}</span><span class="art-detail" aria-hidden="true">${det}</span>
+            <img class="card-shot" loading="lazy" alt="Vorschau von ${esc(g.title)}" src="${esc(g.image || g.screenshot)}" data-fallback="${esc(g.screenshot)}"></div>
+          <div class="card-info"><div><p>VON ${esc(g.author.toUpperCase())}</p><h3>${esc(g.title)}</h3></div><span class="arrow" aria-hidden="true">↗</span></div>
+        </a>`;
+      }).join("");
+      // Bild nicht ladbar: erst Screenshot, sonst Symbol-Optik behalten
+      document.querySelectorAll(".card-shot").forEach(img => {
+        img.addEventListener("error", () => {
+          if (img.dataset.fallback && img.src !== img.dataset.fallback) img.src = img.dataset.fallback;
+          else img.remove();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

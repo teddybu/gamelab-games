@@ -70,3 +70,6 @@ footer > span:first-child { color: #f7f5ea; font-weight: 900; letter-spacing: .0
   :root { scroll-behavior: auto; }
   .game-card { transition: none; }
 }
+
+.card-shot { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; object-position: top; background: #11142b; }
+.card-number { z-index: 3; background: #ffffffd9; padding: 3px 7px; border-radius: 4px; }
